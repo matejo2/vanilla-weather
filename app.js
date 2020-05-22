@@ -1,7 +1,11 @@
 window.addEventListener('load', () => {
     let long;
     let lat;
-    const weatherbitKey = 'no keys';
+    const weatherbitKey = 'lsödas';
+    let temperatureDescription = document.querySelector(".temperature-description");
+    let temperatureDegree = document.querySelector(".temperature-degree");
+    let locationTimezone = document.querySelector(".location-timezone");
+
 
     // api from https://www.weatherbit.io/api/weather-current
     // https://api.weatherbit.io/v2.0/current?city=Raleigh,NC&key=API_KEY
@@ -23,10 +27,13 @@ window.addEventListener('load', () => {
                 })
                 .then(json => {
                     console.log(json.data[0]);
-
-
+                    const {app_temp, timezone} = json.data[0];
+                    const {description} = json.data[0].weather;
+                    // set DOM elem from api
+                    temperatureDegree.textContent = app_temp;
+                    temperatureDescription.textContent = description;
+                    locationTimezone.textContent = timezone;
                 });
         });
     }
-
 });
