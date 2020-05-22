@@ -1,7 +1,7 @@
 window.addEventListener('load', () => {
     let long;
     let lat;
-    const weatherbitKey = 'no keys in git pls'
+    const weatherbitKey = 'no api keys in git'
 
     // api from https://www.weatherbit.io/api/weather-current
     // https://api.weatherbit.io/v2.0/current?city=Raleigh,NC&key=API_KEY
@@ -19,10 +19,10 @@ window.addEventListener('load', () => {
             fetch(api)
                 .then(response => {
                     console.log('RESPONSE:' + response);
-                    return response;
+                    return response.json();
                 })
                 .then(data => {
-                    console.log('ERROR:' + data);
+                    console.log(data);
                 });
         });
     }
