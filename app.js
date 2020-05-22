@@ -1,12 +1,10 @@
 window.addEventListener('load', () => {
     let long;
     let lat;
-    const weatherbitKey = 'lsödas';
+    const weatherbitKey = 'keysmasch';
     let temperatureDescription = document.querySelector(".temperature-description");
     let temperatureDegree = document.querySelector(".temperature-degree");
     let locationTimezone = document.querySelector(".location-timezone");
-
-
     // api from https://www.weatherbit.io/api/weather-current
     // https://api.weatherbit.io/v2.0/current?city=Raleigh,NC&key=API_KEY
     // &lat=38.123&lon=-78.543
@@ -33,7 +31,14 @@ window.addEventListener('load', () => {
                     temperatureDegree.textContent = app_temp;
                     temperatureDescription.textContent = description;
                     locationTimezone.textContent = timezone;
+                    setIcons(document.querySelector(".icon"));
                 });
         });
+    }
+
+    function setIcons(iconID) {
+        const skycons = new Skycons({"color": "white"});
+        skycons.play();
+        return skycons.set(iconID, Skycons.PARTLY_CLOUDY_DAY); // it can be diversed later
     }
 });
