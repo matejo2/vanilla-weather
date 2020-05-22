@@ -1,32 +1,28 @@
 window.addEventListener('load', () => {
     let long;
     let lat;
-    const fullDescriptionApi = 'api.openweathermap.org/data/2.5/weather?lat={lat}&lon={lon}&appid={your api key}';
-
+    const weatherbitKey = 'no keys in git pls'
 
     // api from https://www.weatherbit.io/api/weather-current
     // https://api.weatherbit.io/v2.0/current?city=Raleigh,NC&key=API_KEY
     // &lat=38.123&lon=-78.543
 
-
-    console.log("sometig");
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(position => {
             long = position.coords.longitude;
             lat = position.coords.latitude;
 
-            const proxy = "https://cors-anywhere.herokuapp.com/";
-            //const openWheatherApi = `${proxy}https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&appid=${apiKey}`;
-
+            const api = `https://api.weatherbit.io/v2.0/current?lat=${lat}&lon=${long}&key=${weatherbitKey}`;
 
             console.log('API:' + api);
 
             fetch(api)
                 .then(response => {
+                    console.log('RESPONSE:' + response);
                     return response;
                 })
                 .then(data => {
-                    console.log(data);
+                    console.log('ERROR:' + data);
                 });
         });
     }
